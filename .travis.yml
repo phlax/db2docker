@@ -1,0 +1,17 @@
+# https://travis-ci.org/#!/phlax/db2docker
+sudo: false
+language: python
+python:
+  - 3.5
+install:
+  - pip install --upgrade pip
+  - pwd
+  - pip install .
+  - pip freeze
+  - git config --global user.email "travis@ci.com"
+  - git config --global user.name "Travis Runner"
+
+script:
+  - py.test --cov-report= --cov=. -v -s
+  - flake8 --config=setup.cfg
+  - codecov
